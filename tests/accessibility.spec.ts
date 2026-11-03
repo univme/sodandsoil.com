@@ -34,17 +34,34 @@ for (const route of routes) {
   });
 }
 
-test("video controls include visible label in accessible name", async ({ page }) => {
+test("compact project gallery and social links preserve accessible names", async ({ page }) => {
   await page.goto("/");
-  const controls = page.locator(".video-play");
-  await expect(controls).toHaveCount(2);
-
-  for (const button of await controls.all()) {
-    await expect(button).toContainText("WATCH PROJECT VIDEO");
-    await expect(button).toHaveAccessibleName(/^Watch project video: /i);
-    await button.focus();
-    await expect(button).toBeFocused();
+  await expect(page.locator(".showcase-photo")).toHaveCount(4);
+  await expect(page.locator(".showcase-video-link")).toHaveCount(2);
+  const videoLinks = page.locator(".showcase-video-link");
+  await expect(videoLinks.first()).toHaveAccessibleName(/palmetto turf installation.*youtube video/i);
+  await expect(videoLinks.last()).toHaveAccessibleName(/turf installation in action.*youtube video/i);
+  for (const link of await videoLinks.all()) {
+    await expect(link).toHaveAttribute("href", /^https:\/\/www\.youtube\.com\/watch\?v=/);
+    await expect(link).toHaveAttribute("rel", /noopener/);
+    await link.focus();
+    await expect(link).toBeFocused();
   }
+  const socialNav = page.getByRole("navigation", { name: "Express Turf social media profiles" });
+  await expect(socialNav.getByRole("link")).toHaveCount(4);
+  for (const name of ["TikTok", "YouTube", "Instagram", "Facebook"]) {
+    const link = socialNav.getByRole("link", { name });
+    await expect(link).toBeVisible();
+    await expect(link.locator("svg")).toHaveCount(1);
+  }
+});
+
+test("social page displays compact image gallery and branded icons", async ({ page }) => {
+  await page.goto("/social");
+  await expect(page.locator(".showcase-photo")).toHaveCount(6);
+  await expect(page.locator(".showcase-video-link")).toHaveCount(2);
+  await expect(page.getByRole("navigation", { name: "Express Turf social media profiles" }).getByRole("link")).toHaveCount(4);
+  await expect(page.getByRole("link", { name: "Back to Home" })).toHaveAttribute("href", "/");
 });
 
 test("skip link takes keyboard focus to main content", async ({ page }) => {
