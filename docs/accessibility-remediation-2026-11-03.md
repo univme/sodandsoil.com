@@ -45,3 +45,18 @@ U.S. DOJ guidance states that Title III businesses open to the public have ADA a
 
 Reference: https://www.ada.gov/resources/web-guidance/
 Reference: https://www.w3.org/WAI/WCAG22/Understanding/label-in-name.html
+
+## Finding A11Y-002: Color contrast uncovered by CI
+
+**WCAG:** SC 1.4.3 (Level AA)
+**Location:** /social page links inside `.sociallist`.
+**Automated evidence:** The first axe-core/Playwright job (GitHub Actions run 41695022146, Chromium desktop and mobile) completed 24 passing and 2 failing tests. Four social links had white inherited foreground (#FFFFFF) over Soft Sage (#DCE8D8), measured contrast 1.26:1 versus the 4.5:1 AA threshold for normal text.
+**Impact:** Text was difficult for low-vision visitors to perceive.
+**Fix:** Explicit dark forest text for `.sociallist a` regardless of surrounding section; light ivory focus outlines on dark hero, header, footer, CTA, and social-video controls.
+**Status:** FIXED IN SOURCE — VERIFY IN NEW TEST RUN.
+**Verification:** Re-run axe-core for /social desktop/mobile and inspect focused controls with keyboard manually.
+
+## Automated test evidence
+
+- Initial run 41695022146: 24 passed, 2 contrast failures (/social desktop and mobile), no reported failure in the dedicated 2-video accessible-name regression.
+- Later test runs: results should be appended after completion. A passing automation run is not a complete conformance assessment.
