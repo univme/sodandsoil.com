@@ -41,7 +41,7 @@ export default function VideoGallery({ full = false }: { full?: boolean }) {
                     className="video-play"
                     type="button"
                     onClick={() => setActive((current) => [...current, video.id])}
-                    aria-label={`Play ${video.title}`}
+                    aria-label={`Watch project video: ${video.title}`}
                     style={{
                       backgroundImage: `linear-gradient(0deg, rgba(4, 35, 27, .62), rgba(4, 35, 27, .08)), url("https://i.ytimg.com/vi/${video.id}/hqdefault.jpg")`,
                     }}
