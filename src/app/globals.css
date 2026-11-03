@@ -61,7 +61,7 @@
 .showcase-social-icon-facebook { background:#1877f2; }
 .showcase-social-name { overflow:hidden;text-overflow:ellipsis;white-space:nowrap; }
 .showcase-social-arrow { margin-left:auto;opacity:.6;font-size:16px; }
-.showcase-view-all { margin-top:17px;padding-top:15px;border-top:1px solid #cfdcd2;display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:12px;color:#63766b; }
+.showcase-view-all { margin-top:17px;padding-top:15px;border-top:1px solid #cfdcd2;display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:12px;color:#526a5c; }
 .showcase-view-all-link { color:#105646;font-weight:800;letter-spacing:.07em;white-space:nowrap; }
 .showcase-pagehero { padding:70px 0; }
 .showcase-back-link { display:inline-block;margin-top:14px;padding:9px 0;color:#fff;text-underline-offset:4px;text-decoration:underline;font-weight:700; }
