@@ -11,4 +11,4 @@ export const services=[
 {slug:"planting-nursery",title:"Planting & Nursery",desc:"Palms, landscape planting, shrubs, and nursery selections in Fort Myers.",image:"824a02_73b8eeb65ca645b193ba892bd3378e3e~mv2.jpg"},
 {slug:"commercial-landscaping",title:"Commercial Landscapes",desc:"Coordinated landscape improvements for Southwest Florida properties.",image:"824a02_094870d347cc48889d6b18c1d9f30822~mv2.jpeg"}];
 export const img=(file:string)=>"https://static.wixstatic.com/media/"+file;
-export const socials=[["TikTok","https://www.tiktok.com/@expressrenovation"],["Instagram","https://www.instagram.com/express_turfrenovation"],["Facebook","https://www.facebook.com/expressturf"],["YouTube","https://www.youtube.com/@expressturfrenovationllc6643"]];
+export const socials=[["TikTok","https://www.tiktok.com/@expressrenovation"],["Instagram","https://www.instagram.com/express_turfrenovation"],["Facebook","https://www.facebook.com/expressturf"],["YouTube","https://www.youtube.com/@expressturfrenovation"]];
