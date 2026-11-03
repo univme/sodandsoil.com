@@ -71,7 +71,6 @@ export default function SocialShowcase({ expanded = false }: { expanded?: boolea
                 key={id}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Watch ${title} on YouTube (opens in a new tab)`}
               >
                 <span className="showcase-video-thumb">
                   <img
