@@ -1,9 +1,7 @@
+import { makeMetadata } from "@/lib/seo";
 import Link from "next/link";
 
-export const metadata = {
-  title: "Accessibility Commitment & Feedback",
-  description: "Express Turf Renovation LLC accessibility commitment, standards target, known testing limitations, and contact information.",
-};
+export const metadata = makeMetadata({path:"/accessibility",title:"Accessibility Commitment & Feedback",description:"Learn how Express Turf Renovation LLC is improving the accessibility of its website and how to report an access issue."});
 
 export default function Accessibility() {
   return (
