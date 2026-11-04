@@ -71,3 +71,30 @@ test("skip link takes keyboard focus to main content", async ({ page }) => {
   await page.keyboard.press("Enter");
   await expect(page.locator("#main")).toBeFocused();
 });
+
+
+test("every content page has a unique SEO canonical, title and description", async ({page}) => {
+  for (const route of routes) {
+    await page.goto(route, { waitUntil:"domcontentloaded" });
+    const canonical=page.locator('head link[rel="canonical"]');
+    await expect(canonical, "Exactly one canonical on "+route).toHaveCount(1);
+    const expected="https://sodandsoil.com"+(route==="/"?"/":route);
+    await expect(canonical).toHaveAttribute("href",expected);
+    const description=page.locator('head meta[name="description"]');
+    await expect(description).toHaveCount(1);
+    const text=await description.getAttribute("content");
+    expect(text?.length||0).toBeGreaterThan(65);
+    expect((await page.title()).length).toBeGreaterThan(25);
+  }
+});
+
+test("homepage advertises sod and turf and provides optimized responsive images",async ({page})=>{
+  await page.goto("/", {waitUntil:"domcontentloaded"});
+  await expect(page.locator("h1")).toHaveCount(1);
+  await expect(page.getByText("SOD INSTALLATION · ARTIFICIAL TURF · FORT MYERS, FL")).toBeVisible();
+  await expect(page.locator('head link[rel*="icon"]')).not.toHaveCount(0);
+  const hero=page.locator(".hero img");
+  await expect(hero).toHaveAttribute("src",/\/_next\/image\?/);
+  await expect(hero).toHaveAttribute("sizes","100vw");
+  await expect(page.locator(".services img")).toHaveCount(5);
+});
