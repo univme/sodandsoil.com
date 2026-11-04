@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SiFacebook, SiInstagram, SiTiktok, SiYoutube } from "react-icons/si";
 import { img, services, socials } from "@/lib/site";
 
@@ -34,13 +35,12 @@ export default function SocialShowcase({ expanded = false }: { expanded?: boolea
             key={title}
             aria-label={`Explore ${title.toLowerCase()} project photos`}
           >
-            <img
+            <Image
               src={img(image)}
               alt={`Express Turf Renovation ${title.toLowerCase()} project`}
-              width={480}
-              height={320}
-              loading="lazy"
-              decoding="async"
+              fill
+              sizes={expanded ? "(max-width: 760px) 50vw, 33vw" : "(max-width: 760px) 50vw, 25vw"}
+              quality={74}
             />
             <span aria-hidden="true">{title} <span className="showcase-photo-arrow">↗</span></span>
           </Link>
@@ -73,12 +73,12 @@ export default function SocialShowcase({ expanded = false }: { expanded?: boolea
                 rel="noopener noreferrer"
               >
                 <span className="showcase-video-thumb">
-                  <img
+                  <Image
                     src={`https://i.ytimg.com/vi/${id}/mqdefault.jpg`}
                     width={160}
                     height={90}
-                    loading="lazy"
-                    decoding="async"
+                    sizes="160px"
+                    quality={72}
                     alt=""
                   />
                   <span className="showcase-play-mark" aria-hidden="true">▶</span>
