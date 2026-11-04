@@ -1,4 +1,5 @@
-export const metadata = { title: "Privacy Policy" };
+import { makeMetadata } from "@/lib/seo";
+export const metadata = makeMetadata({path:"/privacy",title:"Privacy Policy",description:"How Express Turf Renovation LLC handles information submitted in landscaping estimate requests and project photos."});
 export default function Privacy() {
   return (
     <>
