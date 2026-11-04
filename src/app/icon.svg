@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Express Turf</title>
+  <rect width="64" height="64" rx="14" fill="#0E3B34"/>
+  <path d="M9 45C22 33 42 33 55 45" fill="none" stroke="#EF7626" stroke-width="6" stroke-linecap="round"/>
+  <path d="M10 51c16-10 29-10 44 0M13 57c15-8 24-8 38 0" fill="none" stroke="#F7F3E8" stroke-width="3" stroke-linecap="round"/>
+  <text x="32" y="31" font-size="25" text-anchor="middle" font-family="Arial,sans-serif" font-weight="800" fill="#F7F3E8">ET</text>
+</svg>
