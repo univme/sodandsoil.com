@@ -1,10 +1,8 @@
+import { makeMetadata } from "@/lib/seo";
 import Link from "next/link";
 import SocialShowcase from "@/components/SocialShowcase";
 
-export const metadata = {
-  title: "Project Gallery & Social Media",
-  description: "See real sod, turf, paver and landscape project photos from Express Turf Renovation, with YouTube videos and TikTok, Instagram and Facebook updates.",
-};
+export const metadata = makeMetadata({path:"/social",title:"Landscaping Videos & Social Project Gallery",description:"See Express Turf Renovation sod, turf, paver and landscape project photos, plus videos from Southwest Florida jobsites and links to official social channels."});
 
 export default function Social() {
   return (
