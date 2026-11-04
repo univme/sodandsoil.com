@@ -79,7 +79,7 @@ test("every content page has a unique SEO canonical, title and description", asy
     const canonical=page.locator('head link[rel="canonical"]');
     await expect(canonical, "Exactly one canonical on "+route).toHaveCount(1);
     const expected="https://sodandsoil.com"+(route==="/"?"/":route);
-    await expect(canonical).toHaveAttribute("href",expected);
+    expect(new URL((await canonical.getAttribute("href")) || "").toString()).toBe(expected);
     const description=page.locator('head meta[name="description"]');
     await expect(description).toHaveCount(1);
     const text=await description.getAttribute("content");
