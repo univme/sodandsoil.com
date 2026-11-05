@@ -6,6 +6,7 @@ import { DM_Sans, Playfair_Display } from "next/font/google";
 import OptionalAnalytics from "@/components/OptionalAnalytics";
 import { business, services, socials } from "@/lib/site";
 import "./globals.css";
+import "./concept.css";
 
 const dmSans = DM_Sans({ subsets: ["latin"], display: "swap", variable: "--font-dm" });
 const playfair = Playfair_Display({ subsets: ["latin"], display: "swap", variable: "--font-playfair" });
