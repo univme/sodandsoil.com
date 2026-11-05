@@ -271,3 +271,40 @@
 @media(prefers-reduced-motion:reduce){
   .concept-v2 .v2-service img,.concept-v2 .v2-project img,.concept-v2 .v2-button{transition:none;transform:none!important;}
 }
+
+/* Progressive-enhancement mobile menu: native details/summary, no scripted focus trap. */
+.header .v2-mobile-menu{display:none;position:relative;z-index:70;}
+.header .v2-mobile-menu summary{
+ list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;
+ min-height:45px;padding:9px 12px;border:1px solid #AFC3B4;border-radius:3px;
+ font-size:12px;font-weight:800;cursor:pointer;color:#153F33;
+}
+.header .v2-mobile-menu summary::-webkit-details-marker{display:none;}
+.header .v2-mobile-menu summary span{font-size:19px;line-height:1;}
+.header .v2-mobile-menu summary:focus-visible{outline:3px solid #B53A2E;outline-offset:3px;}
+.header .v2-mobile-menu nav{
+ position:absolute;right:0;top:calc(100% + 8px);z-index:72;
+ width:min(320px,calc(100vw - 34px));background:#F7F3E8;
+ border:1px solid #B6C9B9;box-shadow:0 20px 50px #09291F44;padding:11px;
+ display:grid;gap:0;
+}
+.header .v2-mobile-menu nav a{
+ padding:13px 14px;border-bottom:1px solid #D6E0D4;font-size:14px;font-weight:700;color:#163D32;
+}
+.header .v2-mobile-menu nav a:last-child{border-bottom:none;background:#B8490F;color:#fff;margin-top:8px;}
+.header .v2-mobile-menu nav a:hover{background:#E3EDE1;color:#104032;}
+.header .v2-mobile-menu nav a:last-child:hover{background:#9C3B09;color:#fff;}
+.header .v2-mobile-menu nav a:focus-visible{outline:3px solid #B53A2E;outline-offset:-2px;}
+@media(max-width:1100px){
+ .header .navlinks{display:none;}
+ .header .v2-mobile-menu{display:block;margin-left:auto;}
+ .header .nav{flex-wrap:nowrap;min-height:89px;padding-bottom:0;}
+ .header .brand{height:86px;}
+ .header .brand img{height:86px;}
+}
+@media(max-width:760px){
+ .header .nav{min-height:88px;height:88px;align-items:center;}
+ .header .brand{width:168px;height:83px;overflow:hidden;}
+ .header .brand img{height:83px;}
+ .header .v2-mobile-menu{margin-left:auto;}
+}
