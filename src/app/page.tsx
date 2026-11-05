@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import SocialShowcase from "@/components/SocialShowcase";
 import { business, services, img } from "@/lib/site";
-import "./concept.css";
 
 const showcase = [
   { title: "Sod Installation", image: "824a02_10f03874cb9545019ddf15d9519af935~mv2.jpeg", service: "sod-installation", label: "01 / NATURAL GRASS" },
