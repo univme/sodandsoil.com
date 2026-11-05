@@ -53,7 +53,7 @@ export default function Home() {
                 Request a project estimate <span aria-hidden="true">↗</span>
               </Link>
               <Link className="v2-button v2-button-outline-light" href="/sod-by-the-pallet">
-                Shop sod by the pallet <span aria-hidden="true">↗</span>
+                Request sod pallet pricing <span aria-hidden="true">↗</span>
               </Link>
             </div>
             <div className="v2-hero-location">
