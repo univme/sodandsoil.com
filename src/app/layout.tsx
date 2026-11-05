@@ -6,6 +6,7 @@ import { DM_Sans, Playfair_Display } from "next/font/google";
 import OptionalAnalytics from "@/components/OptionalAnalytics";
 import { business, services, socials } from "@/lib/site";
 import "./globals.css";
+import "./concept.css";
 
 const dmSans = DM_Sans({ subsets: ["latin"], display: "swap", variable: "--font-dm" });
 const playfair = Playfair_Display({ subsets: ["latin"], display: "swap", variable: "--font-playfair" });
@@ -73,6 +74,18 @@ export default function RootLayout({ children }: {children: ReactNode}) {
               <Link href="/social">Social & Videos</Link>
               <Link href="/about">About</Link>
             </nav>
+            <details className="v2-mobile-menu">
+              <summary>Menu <span aria-hidden="true">☰</span></summary>
+              <nav aria-label="Mobile navigation">
+                <Link href="/">Home</Link>
+                <Link href="/services">Services</Link>
+                <Link href="/sod-by-the-pallet">Sod by the Pallet</Link>
+                <Link href="/projects">Our Work</Link>
+                <Link href="/social">Social &amp; Videos</Link>
+                <Link href="/about">About</Link>
+                <Link href="/contact">Request an Estimate</Link>
+              </nav>
+            </details>
             <Link className="btn orange small" href="/contact">GET AN ESTIMATE ↗</Link>
           </div>
         </header>
