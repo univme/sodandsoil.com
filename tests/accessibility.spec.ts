@@ -118,3 +118,16 @@ test("mobile concept navigation opens accessibly and links to services",async ({
   await expect(menu).toHaveAttribute("open","");
   await expect(menu.getByRole("navigation",{name:"Mobile navigation"}).getByRole("link",{name:"Sod by the Pallet"})).toBeVisible();
 });
+
+
+test("split-screen concept hero photograph is layered above its background", async ({page})=>{
+  await page.goto("/",{waitUntil:"domcontentloaded"});
+  const visual=page.locator(".v2-hero-visual");
+  const photo=visual.locator("img.hero-image");
+  await expect(visual).toBeVisible();
+  await expect(photo).toHaveCount(1);
+  await expect(photo).toHaveCSS("z-index","0");
+  await expect(visual).toHaveCSS("isolation","isolate");
+  await expect(photo).toHaveCSS("object-fit","cover");
+  await expect(visual.locator(".v2-hero-photo-veil")).toHaveCSS("z-index","1");
+});
