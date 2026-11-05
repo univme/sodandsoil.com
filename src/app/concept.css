@@ -82,16 +82,16 @@
  display:flex;align-items:center;justify-content:space-between;gap:12px;
  font-size:9px;font-weight:800;letter-spacing:.18em;color:#A6CAB8;
 }
-.concept-v2 .v2-hero-visual{position:relative;overflow:hidden;min-height:630px;background:#23483B;}
-.concept-v2 .v2-hero-visual .hero-image{object-fit:cover;object-position:48% 50%;}
-.concept-v2 .v2-hero-photo-veil{position:absolute;inset:0;background:linear-gradient(90deg,#072A2355,transparent 28%),linear-gradient(0deg,#072A2380,transparent 44%);pointer-events:none;}
+.concept-v2 .v2-hero-visual{position:relative;isolation:isolate;overflow:hidden;min-height:630px;background:#23483B;}
+.concept-v2 .v2-hero-visual .hero-image{z-index:0;object-fit:cover;object-position:48% 50%;}
+.concept-v2 .v2-hero-photo-veil{position:absolute;z-index:1;inset:0;background:linear-gradient(90deg,#072A2355,transparent 28%),linear-gradient(0deg,#072A2380,transparent 44%);pointer-events:none;}
 .concept-v2 .v2-hero-phototag{
- position:absolute;bottom:30px;left:29px;color:#fff;display:flex;align-items:center;gap:12px;
+ position:absolute;z-index:2;bottom:30px;left:29px;color:#fff;display:flex;align-items:center;gap:12px;
  font-size:11px;font-weight:800;letter-spacing:.17em;line-height:1.65;
 }
 .concept-v2 .v2-photo-tag-mark{font-size:35px;font-weight:400;color:#FFB46D;}
 .concept-v2 .v2-hero-side-label{
- position:absolute;top:32px;right:24px;writing-mode:vertical-rl;letter-spacing:.22em;
+ position:absolute;z-index:2;top:32px;right:24px;writing-mode:vertical-rl;letter-spacing:.22em;
  font-size:10px;font-weight:800;color:#fff;text-shadow:0 1px 5px #0008;
 }
 /* INTRO */
