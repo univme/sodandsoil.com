@@ -95,6 +95,26 @@ test("homepage advertises sod and turf and provides optimized responsive images"
   await expect(page.locator('head link[rel*="icon"]')).not.toHaveCount(0);
   const hero=page.locator(".hero img");
   await expect(hero).toHaveAttribute("src",/\/_next\/image\?/);
-  await expect(hero).toHaveAttribute("sizes","100vw");
+  await expect(hero).toHaveAttribute("sizes","(max-width: 850px) 100vw, 54vw");
   await expect(page.locator(".services img")).toHaveCount(5);
+});
+
+test("tropical editorial homepage preserves customer journeys",async ({page})=>{
+  await page.goto("/",{waitUntil:"domcontentloaded"});
+  await expect(page.getByRole("heading",{level:1})).toContainText("Florida outdoors");
+  await expect(page.locator(".v2-services .v2-service")).toHaveCount(5);
+  await expect(page.locator(".v2-project-grid .v2-project")).toHaveCount(3);
+  await expect(page.locator(".v2-faq-items details")).toHaveCount(3);
+  await expect(page.getByRole("link",{name:/shop sod by the pallet/i})).toHaveAttribute("href","/sod-by-the-pallet");
+  await expect(page.getByRole("link",{name:/request a project estimate/i})).toHaveAttribute("href","/contact");
+  await expect(page.getByRole("link",{name:/explore sod installation/i})).toHaveAttribute("href","/services/sod-installation");
+});
+test("mobile concept navigation opens accessibly and links to services",async ({page})=>{
+  await page.setViewportSize({width:390,height:844});
+  await page.goto("/");
+  const menu=page.locator(".v2-mobile-menu");
+  await expect(menu).toBeVisible();
+  await menu.locator("summary").click();
+  await expect(menu).toHaveAttribute("open","");
+  await expect(menu.getByRole("navigation",{name:"Mobile navigation"}).getByRole("link",{name:"Sod by the Pallet"})).toBeVisible();
 });
