@@ -105,7 +105,7 @@ test("tropical editorial homepage preserves customer journeys",async ({page})=>{
   await expect(page.locator(".v2-services .v2-service")).toHaveCount(5);
   await expect(page.locator(".v2-project-grid .v2-project")).toHaveCount(3);
   await expect(page.locator(".v2-faq-items details")).toHaveCount(3);
-  await expect(page.getByRole("link",{name:/shop sod by the pallet/i})).toHaveAttribute("href","/sod-by-the-pallet");
+  await expect(page.getByRole("link",{name:/request sod pallet pricing/i})).toHaveAttribute("href","/sod-by-the-pallet");
   await expect(page.getByRole("link",{name:/request a project estimate/i})).toHaveAttribute("href","/contact");
   await expect(page.locator(".v2-choice-item").first().getByRole("link",{name:/explore sod installation/i})).toHaveAttribute("href","/services/sod-installation");
 });
