@@ -127,6 +127,7 @@ test("split-screen concept hero photograph is layered above its background", asy
   await expect(visual).toBeVisible();
   await expect(photo).toHaveCount(1);
   await expect(photo).toHaveCSS("z-index","0");
+  await expect.poll(() => photo.evaluate(node => (node as HTMLImageElement).naturalWidth), {timeout:12000}).toBeGreaterThan(0);
   await expect(visual).toHaveCSS("isolation","isolate");
   await expect(photo).toHaveCSS("object-fit","cover");
   await expect(visual.locator(".v2-hero-photo-veil")).toHaveCSS("z-index","1");
