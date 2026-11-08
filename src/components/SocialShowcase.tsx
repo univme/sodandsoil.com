@@ -1,15 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SiFacebook, SiInstagram, SiTiktok, SiYoutube } from "react-icons/si";
-import { img, services, socials } from "@/lib/site";
+import { socials } from "@/lib/site";
+import { ownerProjects } from "@/lib/owner-projects";
+import ProjectImage from "@/components/ProjectImage";
 
 const photos = [
-  { title: "Sod installation", image: services[0].image },
-  { title: "Artificial turf", image: services[1].image },
-  { title: "Pavers & hardscaping", image: services[2].image },
-  { title: "Landscape & tree work", image: services[4].image },
-  { title: "Outdoor lighting", image: services[5].image },
-  { title: "Planting & nursery", image: services[8].image },
+  ownerProjects[3], // finished residential turf
+  ownerProjects[0], // custom driveway inlay
+  ownerProjects[4], // curved turf detailing
+  ownerProjects[5], // commercial palm planting
+  ownerProjects[1], // installation process
+  ownerProjects[6], // team and materials
 ];
 
 const videos = [
@@ -28,21 +30,17 @@ export default function SocialShowcase({ expanded = false }: { expanded?: boolea
   return (
     <div className="social-showcase">
       <div className={expanded ? "showcase-photo-grid showcase-photo-grid-expanded" : "showcase-photo-grid"}>
-        {photos.slice(0, expanded ? 6 : 4).map(({ title, image }) => (
+        {photos.slice(0, expanded ? 6 : 4).map(project => (
           <Link
             className="showcase-photo"
-            href="/projects"
-            key={title}
-            aria-label={`Explore ${title.toLowerCase()} project photos`}
+            href={project.href}
+            key={project.id}
           >
-            <Image
-              src={img(image)}
-              alt={`Express Turf Renovation ${title.toLowerCase()} project`}
-              fill
+            <ProjectImage
+              project={project}
               sizes={expanded ? "(max-width: 760px) 50vw, 33vw" : "(max-width: 760px) 50vw, 25vw"}
-              quality={74}
             />
-            <span aria-hidden="true">{title} <span className="showcase-photo-arrow">↗</span></span>
+            <span>{project.title} <span className="showcase-photo-arrow" aria-hidden="true">↗</span></span>
           </Link>
         ))}
       </div>
