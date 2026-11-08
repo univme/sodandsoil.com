@@ -112,3 +112,74 @@
 .showcase-photo>img{object-fit:cover;}
 .servicerow img{object-fit:cover;}
 /* Clear sizing keeps photos from stretching across responsive breakpoints */
+
+/* Genuine owner-supplied project photography: preserve crop, readability and accessible focus. */
+.galleryitem > img {
+  z-index: 0;
+  object-fit: cover;
+}
+.galleryitem:before {
+  z-index: 1;
+  pointer-events: none;
+}
+.galleryitem > span {
+  z-index: 2;
+}
+.showcase-photo > img {
+  z-index: 0;
+  object-fit: cover;
+}
+.showcase-photo:after {
+  z-index: 1;
+}
+.showcase-photo > span {
+  z-index: 2;
+}
+.owner-project-grid {
+  margin-top: 32px;
+}
+.owner-project-item {
+  background: #0E3B34;
+}
+.owner-project-item > span {
+  max-width: 100%;
+  line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.owner-project-item:focus-visible,
+.showcase-photo:focus-visible {
+  outline: 3px solid #B53A2E;
+  outline-offset: 4px;
+}
+.owner-project-footnote {
+  margin-top: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding-top: 24px;
+  border-top: 1px solid #B9C9BD;
+}
+.owner-project-footnote p {
+  margin: 0;
+  max-width: 590px;
+  color: #4F6558;
+  font-size: 14px;
+}
+.owner-project-footnote .btn {
+  flex-shrink: 0;
+}
+.owner-project-service-links {
+  padding-top: 35px;
+}
+@media(max-width:760px) {
+  .owner-project-footnote {
+    display: block;
+  }
+  .owner-project-footnote .btn {
+    margin-top: 20px;
+  }
+}

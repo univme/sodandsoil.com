@@ -98,3 +98,30 @@ test("homepage advertises sod and turf and provides optimized responsive images"
   await expect(hero).toHaveAttribute("sizes","100vw");
   await expect(page.locator(".services img")).toHaveCount(5);
 });
+
+
+test("owner-supplied project gallery has meaningful image descriptions and destinations", async ({ page }) => {
+  await page.goto("/projects", { waitUntil: "domcontentloaded" });
+  const entries = page.locator(".owner-project-item");
+  await expect(entries).toHaveCount(7);
+  for (const entry of await entries.all()) {
+    const photo = entry.locator("img");
+    await expect(photo).toHaveCount(1);
+    const description = await photo.getAttribute("alt");
+    expect(description?.length || 0).toBeGreaterThan(35);
+    await expect(entry).toHaveAttribute("href", /^\/(?:services\/[^/]+|about)$/);
+  }
+});
+
+test("new photo tiles preserve accessible names and the established homepage design", async ({ page }) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Outdoor spaces.");
+  const projectCards = page.locator(".gallery .galleryitem");
+  await expect(projectCards).toHaveCount(3);
+  for (const card of await projectCards.all()) {
+    await expect(card.locator("img")).toHaveAttribute("alt", /Express Turf|Finished|Landscape|Landscape crew|Curved green|Commercial palm/i);
+    const caption = card.locator("span").first();
+    await expect(caption).not.toBeEmpty();
+  }
+  await expect(page.locator(".showcase-photo")).toHaveCount(4);
+});
