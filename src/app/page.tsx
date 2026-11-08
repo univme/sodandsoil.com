@@ -1,14 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import SocialShowcase from "@/components/SocialShowcase";
+import ProjectImage from "@/components/ProjectImage";
+import { featuredOwnerProjects } from "@/lib/owner-projects";
 import { business, services, img } from "@/lib/site";
-
-const featuredImages = [
-  "824a02_10f03874cb9545019ddf15d9519af935~mv2.jpeg",
-  "824a02_db6418ed0ada40b7bf871b1d82269857~mv2.jpeg",
-  "824a02_1ace274373614f6aa936c8fedccd3cbe~mv2.jpeg",
-];
-const featuredLabels = ["TURF INSTALLATIONS", "PAVERS & HARDSCAPES", "TREE SERVICES"];
 
 export default function Home() {
   return (
@@ -81,10 +76,10 @@ export default function Home() {
         <p className="eyebrow">REAL PROJECTS</p>
         <h2>From vision <em>to view.</em></h2>
         <div className="gallery">
-          {featuredImages.map((filename, i) => (
-            <Link href="/projects" key={filename} className="galleryitem">
-              <Image src={img(filename)} alt="" fill sizes="(max-width: 760px) 100vw, 33vw" quality={76}/>
-              <span>{featuredLabels[i]} ↗</span>
+          {featuredOwnerProjects.map(project => (
+            <Link href={project.href} key={project.id} className="galleryitem">
+              <ProjectImage project={project} sizes="(max-width: 760px) 100vw, 33vw"/>
+              <span>{project.title.toUpperCase()} ↗</span>
             </Link>
           ))}
         </div>
