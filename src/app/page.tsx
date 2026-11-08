@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SocialShowcase from "@/components/SocialShowcase";
 import ProjectImage from "@/components/ProjectImage";
-import { featuredOwnerProjects } from "@/lib/owner-projects";
+import { featuredOwnerProjects, ownerProjects } from "@/lib/owner-projects";
 import { business, services, img } from "@/lib/site";
 
 export default function Home() {
@@ -50,7 +50,19 @@ export default function Home() {
         <div className="services">
           {services.slice(0, 5).map((s, i) => (
             <Link href={"/services/" + s.slug} className={"tile tile" + i} key={s.slug}>
-              <Image src={img(s.image)} fill sizes={i < 2 ? "(max-width: 760px) 100vw, 50vw" : "(max-width: 760px) 100vw, 33vw"} alt="" quality={76} />
+              {i === 1 || i === 2
+                ? <ProjectImage
+                    project={i === 1 ? ownerProjects[3] : ownerProjects[1]}
+                    sizes={i < 2 ? "(max-width: 760px) 100vw, 50vw" : "(max-width: 760px) 100vw, 33vw"}
+                  />
+                : <Image
+                    src={img(s.image)}
+                    fill
+                    sizes={i < 2 ? "(max-width: 760px) 100vw, 50vw" : "(max-width: 760px) 100vw, 33vw"}
+                    alt=""
+                    quality={76}
+                  />
+              }
               <span className="n">0{i + 1}</span>
               <div><h3>{s.title}</h3><p>{s.desc}</p></div>
               <span className="arrow">↗</span>
