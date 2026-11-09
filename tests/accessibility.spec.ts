@@ -98,3 +98,45 @@ test("homepage advertises sod and turf and provides optimized responsive images"
   await expect(hero).toHaveAttribute("sizes","100vw");
   await expect(page.locator(".services img")).toHaveCount(5);
 });
+
+
+test("homepage entity schema identifies the brand as Organization and a valid local business", async ({ page }) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const title = await page.title();
+  expect(title).toContain("Fort Myers");
+  expect(title).toContain("Express Turf Renovation");
+  expect(title.length).toBeLessThanOrEqual(60);
+
+  const rawSchema = await page.locator('script[type="application/ld+json"]').first().textContent();
+  expect(rawSchema).toBeTruthy();
+  const schema = JSON.parse(rawSchema || "{}") as {
+    "@type": string[];
+    "@id": string;
+    name: string;
+    url: string;
+    logo: string;
+    description: string;
+    telephone: string;
+    address: { postalCode: string; addressLocality: string };
+    sameAs: string[];
+  };
+  expect(schema["@type"]).toContain("Organization");
+  expect(schema["@type"]).toContain("HomeAndConstructionBusiness");
+  expect(schema["@id"]).toBe("https://sodandsoil.com/#business");
+  expect(schema.name).toBe("Express Turf Renovation LLC");
+  expect(schema.url).toBe("https://sodandsoil.com/");
+  expect(schema.logo).toBe("https://sodandsoil.com/logo-light.webp");
+  expect(schema.description).toContain("sod installation");
+  expect(schema.telephone).toBe("(239) 848-8290");
+  expect(schema.address).toMatchObject({ postalCode: "33908", addressLocality: "Fort Myers" });
+  expect(schema.sameAs.length).toBeGreaterThanOrEqual(4);
+});
+
+test("service provider references the same business entity", async ({ page }) => {
+  await page.goto("/services/sod-installation", { waitUntil: "domcontentloaded" });
+  const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const nodes = scripts.map(raw => JSON.parse(raw));
+  const service = nodes.find(node => node["@type"] === "Service");
+  expect(service).toBeTruthy();
+  expect(service.provider["@id"]).toBe("https://sodandsoil.com/#business");
+});
