@@ -13,7 +13,7 @@ const playfair = Playfair_Display({ subsets: ["latin"], display: "swap", variabl
 export const metadata: Metadata = {
   metadataBase: new URL("https://sodandsoil.com"),
   title: {
-    default: "Sod Installation & Artificial Turf in Fort Myers, FL | Express Turf Renovation",
+    default: "Sod & Turf in Fort Myers | Express Turf Renovation",
     template: "%s | Express Turf Renovation",
   },
   description: "Express Turf Renovation LLC provides sod installation, sod by the pallet, artificial turf, pavers, landscape lighting and outdoor renovation in Southwest Florida.",
@@ -31,10 +31,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: {children: ReactNode}) {
   const structured = {
     "@context": "https://schema.org",
-    "@type": "LandscapingBusiness",
+    "@type": ["HomeAndConstructionBusiness", "Organization"],
     "@id": "https://sodandsoil.com/#business",
     name: business.name,
     url: "https://sodandsoil.com/",
+    logo: "https://sodandsoil.com/logo-light.webp",
+    description:
+      "Express Turf Renovation LLC provides sod installation, artificial turf, " +
+      "sod by the pallet, hardscaping, outdoor lighting and landscaping services " +
+      "for Southwest Florida properties.",
     telephone: business.phone,
     email: business.email,
     address: {
